@@ -16,7 +16,7 @@ function displayPurchaseInfo() {
 function incrementTicketNumber() {
     let ticketNumber = localStorage.getItem('ticketNumber');
     if (!ticketNumber) {
-        ticketNumber = 186542; // Початкове значення
+        ticketNumber = 236542; // Початкове значення
     } 
     // Мы не увеличиваем номер, так как вы попросили оставить его
     
