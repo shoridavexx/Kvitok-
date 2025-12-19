@@ -15,10 +15,22 @@ function displayPurchaseInfo() {
 // Збільшення номера квитка (Вы просили оставить, без изменений)
 function incrementTicketNumber() {
     let ticketNumber = localStorage.getItem('ticketNumber');
+    
     if (!ticketNumber) {
-        ticketNumber = 236542; // Початкове значення
+        // Якщо квитка ще немає в пам'яті, встановлюємо початкове значення
+        ticketNumber = 236542; 
+    } else {
+        // Якщо квиток є, перетворюємо його на число і додаємо 1
+        ticketNumber = parseInt(ticketNumber) + 1;
     } 
-    // Мы не увеличиваем номер, так как вы попросили оставить его
+    
+    // Зберігаємо вже оновлене значення назад у LocalStorage
+    localStorage.setItem('ticketNumber', ticketNumber);
+    
+    // Форматуємо число (додаємо пробіли для тисяч) і виводимо на екран
+    const formattedNumber = Number(ticketNumber).toLocaleString('uk-UA');
+    document.getElementById('ticket-number').textContent = formattedNumber;
+}
     
     localStorage.setItem('ticketNumber', ticketNumber);
     const formattedNumber = Number(ticketNumber).toLocaleString('uk-UA');
@@ -112,3 +124,4 @@ window.onload = function () {
     const display = document.querySelector('#timer');
     startPersistentTimer(display);
 };
+
