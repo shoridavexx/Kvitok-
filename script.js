@@ -12,27 +12,22 @@ function displayPurchaseInfo() {
     document.getElementById('purchase-info').textContent = `Придбано ${formattedDate}`;
 }
 
-// Збільшення номера квитка (Вы просили оставить, без изменений)
+// Збільшення номера квитка (Теперь увеличивается при каждом обновлении)
 function incrementTicketNumber() {
     let ticketNumber = localStorage.getItem('ticketNumber');
-    
+
     if (!ticketNumber) {
-        // Якщо квитка ще немає в пам'яті, встановлюємо початкове значення
+        // Если билета еще нет в памяти, ставим начальное значение
         ticketNumber = 236542; 
     } else {
-        // Якщо квиток є, перетворюємо його на число і додаємо 1
+        // Если билет есть, превращаем строку в число и прибавляем 1
         ticketNumber = parseInt(ticketNumber) + 1;
     } 
-    
-    // Зберігаємо вже оновлене значення назад у LocalStorage
+
+    // Сохраняем новое значение в LocalStorage
     localStorage.setItem('ticketNumber', ticketNumber);
     
-    // Форматуємо число (додаємо пробіли для тисяч) і виводимо на екран
-    const formattedNumber = Number(ticketNumber).toLocaleString('uk-UA');
-    document.getElementById('ticket-number').textContent = formattedNumber;
-}
-    
-    localStorage.setItem('ticketNumber', ticketNumber);
+    // Форматируем число (добавляем пробелы, например: 236 543) и выводим на экран
     const formattedNumber = Number(ticketNumber).toLocaleString('uk-UA');
     document.getElementById('ticket-number').textContent = formattedNumber;
 }
@@ -124,4 +119,5 @@ window.onload = function () {
     const display = document.querySelector('#timer');
     startPersistentTimer(display);
 };
+
 
