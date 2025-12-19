@@ -12,18 +12,24 @@ function displayPurchaseInfo() {
     document.getElementById('purchase-info').textContent = `Придбано ${formattedDate}`;
 }
 
-// Збільшення номера квитка (Вы просили оставить, без изменений)
-function incrementTicketNumber() 
-{
+// Збільшення номера квитка (Теперь добавляет +1 при каждом обновлении)
+function incrementTicketNumber() {
     let ticketNumber = localStorage.getItem('ticketNumber');
+
     if (!ticketNumber) {
-        ticketNumber = 236542; // Початкове значення
+        // Если зашли в первый раз — ставим начальное число
+        ticketNumber = 236542; 
+    } else {
+        // Если в памяти уже есть число, превращаем его в цифру и добавляем 1
+        ticketNumber = parseInt(ticketNumber) + 1;
     } 
-    // Мы не увеличиваем номер, так как вы попросили оставить его
+
+    // Сохраняем уже новое, увеличенное число в память
     localStorage.setItem('ticketNumber', ticketNumber);
+
+    // Выводим на экран с красивым форматированием (пробелы между цифрами)
     const formattedNumber = Number(ticketNumber).toLocaleString('uk-UA');
     document.getElementById('ticket-number').textContent = formattedNumber;
-
 }
 
 // --- НОВАЯ ЛОГИКА ТАЙМЕРА ---
@@ -113,5 +119,6 @@ window.onload = function () {
     const display = document.querySelector('#timer');
     startPersistentTimer(display);
 };
+
 
 
